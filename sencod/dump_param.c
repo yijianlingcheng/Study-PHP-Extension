@@ -57,27 +57,27 @@ static void my_zval_dump_real(zval *z, int level)
     switch (Z_TYPE_P(z))
     {
         case IS_NULL:
-            php_printf("%*stype = null, refcount = %d%s\n", level * 4, "", Z_REFCOUNT_P(z), Z_ISREF_P(z) ? ", is ref ." : "");
+            php_printf("null value = null");
             break;
         
         case IS_TRUE:
-            php_printf("%*stype = true, refcount = %d%s ,value = %s\n", level * 4, "", Z_REFCOUNT_P(z), Z_ISREF_P(z) ? ", is ref ." : "", "true");
+            php_printf("bool value = true");
             break;
             
         case IS_FALSE:
-            php_printf("%*stype = false, refcount = %d%s ,value = %s\n", level * 4, "", Z_REFCOUNT_P(z), Z_ISREF_P(z) ? ", is ref ." : "", "false");
+            php_printf("bool value = false");
             break;
             
         case IS_LONG:
-            php_printf("%*stype = long, refcount = %d%s ,value = %ld\n", level * 4, "", Z_REFCOUNT_P(z), Z_ISREF_P(z) ? ", is ref ." : "", Z_LVAL_P(z));
+            php_printf("int value = (" ZEND_LONG_FMT ")\n", Z_LVAL_P(z));
             break;
             
         case IS_STRING:
-            php_printf("%*stype = string, refcount = %d%s ,value = '%s', len = '%d'\n", level * 4, "", Z_REFCOUNT_P(z), Z_ISREF_P(z) ? ", is ref ." : "", Z_STRVAL_P(z), Z_STRLEN_P(z));
+            php_printf("string value = '%s', len = '%d'\n", Z_STRVAL_P(z), Z_STRLEN_P(z));
             break;
         
         case IS_DOUBLE:
-            php_printf("%*stype = double, refcount = %d%s ,value = %0.6f\n", level * 4, "", Z_REFCOUNT_P(z), Z_ISREF_P(z) ? ", is ref ." : "", Z_DVAL_P(z));
+            php_printf("float(%.*G)\n", (int) EG(precision), Z_DVAL_P(z));
             break;
             
         default:
