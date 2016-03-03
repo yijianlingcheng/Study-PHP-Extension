@@ -1,0 +1,13 @@
+// $Id$
+// vim:ft=javascript
+
+// If your extension references something external, use ARG_WITH
+// ARG_WITH("dump_param", "for dump_param support", "no");
+
+// Otherwise, use ARG_ENABLE
+// ARG_ENABLE("dump_param", "enable dump_param support", "no");
+
+if (PHP_DUMP_PARAM != "no") {
+	EXTENSION("dump_param", "dump_param.c", PHP_EXTNAME_SHARED, "/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1");
+}
+
